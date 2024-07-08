@@ -2,7 +2,9 @@ import json
 from django.core.management.base import BaseCommand
 from catalog.models import Category, Product
 
+
 class Command(BaseCommand):
+
     @staticmethod
     def json_read(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -31,6 +33,7 @@ class Command(BaseCommand):
                 price=prod['price'],
                 created_at=prod['created_at'],
                 updated_at=prod['updated_at'],
+                manufactured_at=prod['manufactured_at'],
             ) for prod in products
         ]
         Product.objects.bulk_create(product_objs)
